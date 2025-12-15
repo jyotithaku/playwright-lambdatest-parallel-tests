@@ -1,4 +1,5 @@
-import { defineConfig, devices } from '@playwright/test';
+const { defineConfig, devices } = require('@playwright/test');
+const capabilities= require("./config/capabilities")
 
 /**
  * Read environment variables from file.
@@ -35,64 +36,25 @@ export default defineConfig({
   },
 
   /* Configure projects for major browsers */
+  // projects:capabilities.map((capability:any)=>({
+  //   name: capability["LT:Options"]["name"],
+  //   use: {
+  //     browserName: capability.browserName,
+  //     ...capability["LT:Options"]
+  //   }
+
+  // })),
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'],
-        headless: false,
-       },
+{
+      name: 'Playwright Test for chrome'
     },
-    // {
-    //   name: 'LT-Win10-Chromium',
-    //   use: {
-    //     ...devices['Desktop Chrome'],
-    //   },
-    // },
-    // {
-    //   name: 'LT-MacOS-Firefox',
-    //   use: {
-    //     ...devices['Desktop Firefox'],
-    //   },
-
-    // },
-
     {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] ,
-        headless: false,
-      },
-    },
-
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
+      name: 'Playwright Test for macOS'
+    }
   ],
+  
+  
+  
 
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
+ 
 });
